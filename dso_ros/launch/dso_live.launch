@@ -1,0 +1,25 @@
+<launch>
+
+<node pkg="dso_ros" type="dso_live" name="dso_live" output="screen">
+    <param name="calib" value="/home/devil/dso_ws/src/dso_ros-master/euroc_cam0.txt" />
+    <param name="image_topic" value="/cam0/image_raw" />
+    <param name="ImmatureDensity" value="1000" />
+    <param name="PointDensity" value="1200" />
+    <param name="minFrames" value="5" />
+    <param name="maxFrames" value="11" />
+    <param name="maxOptIterations" value="11" />
+    <param name="minOptIterations" value="1" />
+    <param name="logStuff" value="false" />
+    <param name="kfGlobalWeight" value="1.0" />
+</node>
+
+<node pkg="dso_ros" type="mapping_node" name="mapping_node" output="screen">
+    <param name="resolution" value="0.1" />
+    <param name="prob_threshold" value="0.8" />
+    <param name="depthInfoQueueSize" value="100" />
+    <param name="depth_topic" value="/depth_info" />
+    <param name="pointcloud_topic" value="/global_map" />
+</node>
+
+
+</launch>
